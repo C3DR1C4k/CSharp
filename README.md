@@ -2,7 +2,7 @@
 All CSharp Projects
 
 ******************************************************
- Copyright (C) 2020-2025 C3DR1C_4k <ceddy.google@icloud.com>
+ Copyright (C) 2020-2025 C3DR1C_4k 
  
  This file is part of All CSharp Projects.
  
