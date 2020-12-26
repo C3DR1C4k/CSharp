@@ -89,12 +89,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DiscordHelper\CommandHelper.cs" />
+    <Compile Include="DiscordHelper\BaseCommand.cs" />
+    <Compile Include="DiscordHelper\Command\_Purge.cs" />
+    <Compile Include="DiscordHelper\EventHelper.cs" />
+    <Compile Include="Enums\BotStatus.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FileHelper\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,6 @@
-﻿using Discord;
+﻿using _4kGamingBot.DiscordHelper;
+using _4kGamingBot.DiscordHelper.Command;
+using Discord;
 using Discord.WebSocket;
 using System;
 using System.Collections.Generic;
@@ -16,28 +18,25 @@ namespace _4kGamingBot
         {
             _client = new DiscordSocketClient();
 
-            _client.LoggedIn += Client_LoggedIn;
-            _client.Connected += Client_Connected;
+            EventHelper _events = new EventHelper(_client);
+
+            _client.LoggedIn += _events.Client_LoggedIn;
+            _client.Connected += _events.Client_Connected;
 
             var token = File.ReadAllText("C:\\Token.txt");
 
             await _client.LoginAsync(TokenType.Bot, token);
             await _client.StartAsync();
 
+            CommandHelper _commandHelper = new CommandHelper(_client);
+
+            _Purge _Purge = new _Purge();
+
+            _Purge.commandString = "!purge";
+
+            _commandHelper.AddCommand(_Purge);
+
             await Task.Delay(-1);
-        }
-
-        private static Task Client_Connected()
-        {
-            _client.SetStatusAsync(UserStatus.Online);
-            _client.SetGameAsync("Administrating");
-            return Task.CompletedTask;
-        }
-
-        private static Task Client_LoggedIn()
-        {
-            Console.WriteLine("Logged In");
-            return Task.CompletedTask;
         }
     }
 }
