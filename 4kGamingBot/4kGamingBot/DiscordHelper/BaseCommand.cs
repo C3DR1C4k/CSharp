@@ -11,9 +11,16 @@ namespace _4kGamingBot.DiscordHelper
     class BaseCommand
     {
         public string commandString { get; set; }
-        public IMessageChannel channel { get; set; }
-        public virtual void eventActionMethod(string[] args, DiscordSocketClient _client)
+        public BaseCommand(string commandString)
         {
+            this.commandString = commandString;
+        }
+        public virtual async Task eventActionMethod(string[] args, DiscordSocketClient _client, IMessageChannel channel)
+        {
+            if (args.Count() == 2)
+            {
+                await channel.SendMessageAsync($"User issued the '{commandString}' command with following args '{args[1]}'");
+            }
         }
     }
 }

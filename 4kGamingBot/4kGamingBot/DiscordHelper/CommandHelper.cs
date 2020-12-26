@@ -25,9 +25,9 @@ namespace _4kGamingBot.DiscordHelper
             _commandList.Add(_command);
         }
 
-        private Task Client_Command(SocketMessage arg)
+        private async Task Client_Command(SocketMessage arg)
         {
-            if (arg.Content.First() == '!')
+            if (arg.Content.First() == '!' && !arg.Author.IsBot)
             {
                 string[] args = arg.Content.Split(' ');
 
@@ -35,12 +35,10 @@ namespace _4kGamingBot.DiscordHelper
                 {
                     if (_command.commandString.ToLower() == args[0].ToLower())
                     {
-                        _command.channel = arg.Channel as IMessageChannel;
-                        _command.eventActionMethod(args, _client);
+                        await _command.eventActionMethod(args, _client, arg.Channel as IMessageChannel);
                     }
                 }
             }
-            return Task.CompletedTask;
         }
     }
 }

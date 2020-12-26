@@ -1,4 +1,5 @@
-﻿using Discord.WebSocket;
+﻿using Discord;
+using Discord.WebSocket;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,21 @@ namespace _4kGamingBot.DiscordHelper.Command
 {
     class _Purge : BaseCommand
     {
-        public override void eventActionMethod(string[] args, DiscordSocketClient _client)
+        public _Purge(string commandString) : base(commandString)
+        {
+        }
+
+        public override async Task eventActionMethod(string[] args, DiscordSocketClient _client, IMessageChannel channel)
         {
             if (args.Count() == 2)
             {
-                channel.SendMessageAsync(commandString + " " + args[1]);
-                return;
+                var messages = channel.GetMessagesAsync(Convert.ToInt32(args[1]) + 1).Flatten();
+
+                foreach (var h in await messages.ToArrayAsync())
+                {
+                    await channel.DeleteMessageAsync(h);
+                }
+                await channel.SendMessageAsync($"'{commandString.Replace("!", "")}d' for '{args[1]}' messages");
             }
         }
     }

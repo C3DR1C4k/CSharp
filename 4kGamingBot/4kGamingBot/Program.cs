@@ -30,9 +30,7 @@ namespace _4kGamingBot
 
             CommandHelper _commandHelper = new CommandHelper(_client);
 
-            _Purge _Purge = new _Purge();
-
-            _Purge.commandString = "!purge";
+            _Purge _Purge = new _Purge("!purge");
 
             _commandHelper.AddCommand(_Purge);
 
