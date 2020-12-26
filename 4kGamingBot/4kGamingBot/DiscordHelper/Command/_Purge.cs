@@ -10,13 +10,11 @@ namespace _4kGamingBot.DiscordHelper.Command
 {
     class _Purge : BaseCommand
     {
-        public _Purge(string commandString) : base(commandString)
-        {
-        }
+        public _Purge(string commandString, string description, int args) : base(commandString, description, args) { }
 
         public override async Task eventActionMethod(string[] args, DiscordSocketClient _client, IMessageChannel channel)
         {
-            if (args.Count() == 2)
+            if (args.Count() == this.args)
             {
                 var messages = channel.GetMessagesAsync(Convert.ToInt32(args[1]) + 1).Flatten();
 

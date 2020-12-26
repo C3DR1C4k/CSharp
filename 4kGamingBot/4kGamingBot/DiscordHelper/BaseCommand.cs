@@ -11,9 +11,14 @@ namespace _4kGamingBot.DiscordHelper
     class BaseCommand
     {
         public string commandString { get; set; }
-        public BaseCommand(string commandString)
+        public string description { get; set; }
+        public int args { get; set; }
+
+        public BaseCommand(string commandString, string description, int args)
         {
             this.commandString = commandString;
+            this.description = description;
+            this.args = args;
         }
         public virtual async Task eventActionMethod(string[] args, DiscordSocketClient _client, IMessageChannel channel)
         {
