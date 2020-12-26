@@ -95,6 +95,7 @@
     <Compile Include="DiscordHelper\Command\_Purge.cs" />
     <Compile Include="DiscordHelper\EventHelper.cs" />
     <Compile Include="Enums\BotStatus.cs" />
+    <Compile Include="Enums\GuildRoles.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
