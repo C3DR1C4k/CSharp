@@ -42,11 +42,7 @@ namespace _4kGamingBot.DiscordHelper
                         var user = arg.Author as SocketGuildUser;
                         var role = (user as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == _command.permission.ToString().Replace('_', ' '));
 
-                        if (_command.permission == GuildRoles.All)
-                        {
-                            await _command.eventActionMethod(args, _client, arg.Channel as IMessageChannel);
-                        }
-                        else if(user.Roles.Contains(role))
+                        if (_command.permission == GuildRoles.All || user.Roles.Contains(role))
                         {
                             await _command.eventActionMethod(args, _client, arg.Channel as IMessageChannel);
                         }
