@@ -1,5 +1,6 @@
 ﻿using _4kGamingBot.DiscordHelper;
 using _4kGamingBot.DiscordHelper.Command;
+using _4kGamingBot.Enums;
 using Discord;
 using Discord.WebSocket;
 using System;
@@ -30,7 +31,7 @@ namespace _4kGamingBot
 
             CommandHelper _commandHelper = new CommandHelper(_client);
 
-            _Purge _Purge = new _Purge("!purge", "This is the description", 2);
+            _Purge _Purge = new _Purge("!purge", "This is the description", 2, GuildRoles.Helper);
 
             _commandHelper.AddCommand(_Purge);
 

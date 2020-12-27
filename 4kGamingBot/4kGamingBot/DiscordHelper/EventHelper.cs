@@ -29,5 +29,7 @@ namespace _4kGamingBot.DiscordHelper
             Console.WriteLine("Logged In");
             return Task.CompletedTask;
         }
+
+
     }
 }

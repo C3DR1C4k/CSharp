@@ -1,4 +1,5 @@
-﻿using Discord;
+﻿using _4kGamingBot.Enums;
+using Discord;
 using Discord.WebSocket;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace _4kGamingBot.DiscordHelper.Command
 {
     class _Purge : BaseCommand
     {
-        public _Purge(string commandString, string description, int args) : base(commandString, description, args) { }
+        public _Purge(string commandString, string description, int args, GuildRoles permission) : base(commandString, description, args, permission) { }
 
         public override async Task eventActionMethod(string[] args, DiscordSocketClient _client, IMessageChannel channel)
         {
@@ -18,9 +19,9 @@ namespace _4kGamingBot.DiscordHelper.Command
             {
                 var messages = channel.GetMessagesAsync(Convert.ToInt32(args[1]) + 1).Flatten();
 
-                foreach (var h in await messages.ToArrayAsync())
+                foreach (var message in await messages.ToArrayAsync())
                 {
-                    await channel.DeleteMessageAsync(h);
+                    await channel.DeleteMessageAsync(message);
                 }
                 await channel.SendMessageAsync($"'{commandString.Replace("!", "")}d' for '{args[1]}' messages");
             }
