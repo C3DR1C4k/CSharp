@@ -1,4 +1,5 @@
-﻿using Discord;
+﻿using _4kGamingBot.Enums;
+using Discord;
 using Discord.WebSocket;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,14 @@ namespace _4kGamingBot.DiscordHelper
         public string commandString { get; set; }
         public string description { get; set; }
         public int args { get; set; }
+        public GuildRoles permission { get; set; }
 
-        public BaseCommand(string commandString, string description, int args)
+        public BaseCommand(string commandString, string description, int args, GuildRoles permission)
         {
             this.commandString = commandString;
             this.description = description;
             this.args = args;
+            this.permission = permission;
         }
         public virtual async Task eventActionMethod(string[] args, DiscordSocketClient _client, IMessageChannel channel)
         {

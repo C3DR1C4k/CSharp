@@ -8,9 +8,10 @@ namespace _4kGamingBot.Enums
 {
     public enum GuildRoles
     {
-        Member = 0,
-        Helper = 1,
-        Owner = 2,
-        Personal_Guild_Bot = 3
+        All = 0,
+        Member = 1,
+        Helper = 2,
+        Owner = 3,
+        Personal_Guild_Bot = 4
     }
 }

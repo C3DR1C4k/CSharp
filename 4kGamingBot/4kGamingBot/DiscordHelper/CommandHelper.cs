@@ -1,4 +1,5 @@
-﻿using Discord;
+﻿using _4kGamingBot.Enums;
+using Discord;
 using Discord.WebSocket;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,16 @@ namespace _4kGamingBot.DiscordHelper
                 {
                     if (_command.commandString.ToLower() == args[0].ToLower())
                     {
-                        await _command.eventActionMethod(args, _client, arg.Channel as IMessageChannel);
+                        ulong id = arg.Author.Id;
+                        ulong guildid = arg.Channel.Id;
+
+                        var user = arg.Author as SocketGuildUser;
+                        var role = (user as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == _command.permission.ToString().Replace('_', ' '));
+
+                        if (_command.permission == GuildRoles.All || user.Roles.Contains(role))
+                        {
+                            await _command.eventActionMethod(args, _client, arg.Channel as IMessageChannel);
+                        }
                     }
                 }
             }
