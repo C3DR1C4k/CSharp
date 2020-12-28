@@ -30,9 +30,12 @@ namespace _4kGamingBot
 
             CommandHelper _commandHelper = new CommandHelper(_client);
 
-            _Purge _Purge = new _Purge("!purge", "This is the description", 2);
+            _Purge _Purge = new _Purge("!purge", "This is the description", 1);
+            _Help _Help = new _Help("!help", "This shows the user all commands that exist", 0);
+            _Help.CommandList.Add(_Purge);
 
             _commandHelper.AddCommand(_Purge);
+            _commandHelper.AddCommand(_Help);
 
             await Task.Delay(-1);
         }
