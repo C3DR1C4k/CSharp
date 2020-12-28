@@ -28,13 +28,14 @@ namespace _4kGamingBot.DiscordHelper
             if (args.Count() == 2)
             {
                 await channel.SendMessageAsync($"User '{authorOfMessage.Username}' issued the '{commandString}' command with following args '{args[1]}'");
-                EventFired(args, _client, channel, authorOfMessage);
+                await EventFired(args, _client, channel, authorOfMessage);
             }
         }
 
-        public void EventFired(string[] args, DiscordSocketClient _client, IMessageChannel channel, SocketUser authorOfMessage)
+        public async Task EventFired(string[] args, DiscordSocketClient _client, IMessageChannel channel, SocketUser authorOfMessage)
         {
             Console.WriteLine($"User '{authorOfMessage.Username}' issued the '{commandString}' command with following args '{args[1]}'");
+            await Task.CompletedTask;
         }
     }
 }

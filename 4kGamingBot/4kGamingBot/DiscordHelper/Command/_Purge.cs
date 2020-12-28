@@ -25,7 +25,7 @@ namespace _4kGamingBot.DiscordHelper.Command
                 }
                 await channel.SendMessageAsync($"'{commandString.Replace("!", "")}d' for '{args[1]}' messages");
 
-                base.EventFired(args, _client, channel, authorOfMessage);
+                await EventFired(args, _client, channel, authorOfMessage);
             }
         }
     }

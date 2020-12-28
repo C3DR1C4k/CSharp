@@ -22,8 +22,7 @@ namespace _4kGamingBot.DiscordHelper.Command
                 OutPutString += $"{command.commandString}   |   {command.args} arguments to pass    |   {command.description}   |   Role needed '{permission.ToString()}' \n";
             }
             await channel.SendMessageAsync(OutPutString);
-
-            base.EventFired(args, _client, channel, authorOfMessage);
+            await EventFired(args, _client, channel, authorOfMessage);
         }
     }
 }
