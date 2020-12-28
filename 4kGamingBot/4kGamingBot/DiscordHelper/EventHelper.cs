@@ -11,6 +11,7 @@ namespace _4kGamingBot.DiscordHelper
 {
     class EventHelper
     {
+        public IMessageChannel LogChannel { get; set; }
         DiscordSocketClient _client;
         public EventHelper(DiscordSocketClient _client)
         {
@@ -30,6 +31,28 @@ namespace _4kGamingBot.DiscordHelper
             return Task.CompletedTask;
         }
 
+        public Task Client_Ready()
+        {
+            ulong id = 783720761650315274;
+            LogChannel = _client.GetChannel(id) as IMessageChannel;
+            return Task.CompletedTask;
+        }
 
+        public Task User_OnLeft(SocketGuildUser arg)
+        {
+            LogChannel.SendMessageAsync($"'{arg.Username}' left the Guild");
+            Console.WriteLine($"'{arg.Username}' left the Guild");
+            return Task.CompletedTask;
+        }
+
+        public Task User_OnJoined(SocketGuildUser arg)
+        {
+            var role = arg.Guild.Roles.FirstOrDefault(x => x.Name == "Member");
+            arg.AddRoleAsync(role);
+            LogChannel.SendMessageAsync($"User '{arg.Username}' was granted the role '{role.Name}'");
+            Console.WriteLine($"User '{arg.Username}' was granted the role '{role.Name}'");
+
+            return Task.CompletedTask;
+        }
     }
 }

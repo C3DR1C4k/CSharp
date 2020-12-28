@@ -13,9 +13,9 @@ namespace _4kGamingBot.DiscordHelper.Command
     {
         public _Purge(string commandString, string description, int args, GuildRoles permission) : base(commandString, description, args, permission) { }
 
-        public override async Task eventActionMethod(string[] args, DiscordSocketClient _client, IMessageChannel channel)
+        public override async Task eventActionMethod(string[] args, DiscordSocketClient _client, IMessageChannel channel, SocketUser authorOfMessage)
         {
-            if (args.Count() == this.args)
+            if (args.Count() == this.args + 1)
             {
                 var messages = channel.GetMessagesAsync(Convert.ToInt32(args[1]) + 1).Flatten();
 
@@ -24,6 +24,8 @@ namespace _4kGamingBot.DiscordHelper.Command
                     await channel.DeleteMessageAsync(message);
                 }
                 await channel.SendMessageAsync($"'{commandString.Replace("!", "")}d' for '{args[1]}' messages");
+
+                base.EventFired(args, _client, channel, authorOfMessage);
             }
         }
     }

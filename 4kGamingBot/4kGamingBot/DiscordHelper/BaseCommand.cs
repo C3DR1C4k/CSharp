@@ -23,12 +23,18 @@ namespace _4kGamingBot.DiscordHelper
             this.args = args;
             this.permission = permission;
         }
-        public virtual async Task eventActionMethod(string[] args, DiscordSocketClient _client, IMessageChannel channel)
+        public virtual async Task eventActionMethod(string[] args, DiscordSocketClient _client, IMessageChannel channel, SocketUser authorOfMessage)
         {
             if (args.Count() == 2)
             {
-                await channel.SendMessageAsync($"User issued the '{commandString}' command with following args '{args[1]}'");
+                await channel.SendMessageAsync($"User '{authorOfMessage.Username}' issued the '{commandString}' command with following args '{args[1]}'");
+                EventFired(args, _client, channel, authorOfMessage);
             }
+        }
+
+        public void EventFired(string[] args, DiscordSocketClient _client, IMessageChannel channel, SocketUser authorOfMessage)
+        {
+            Console.WriteLine($"User '{authorOfMessage.Username}' issued the '{commandString}' command with following args '{args[1]}'");
         }
     }
 }

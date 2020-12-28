@@ -1,5 +1,6 @@
 ﻿using _4kGamingBot.DiscordHelper;
 using _4kGamingBot.DiscordHelper.Command;
+using _4kGamingBot.Enums;
 using Discord;
 using Discord.WebSocket;
 using System;
@@ -22,6 +23,9 @@ namespace _4kGamingBot
 
             _client.LoggedIn += _events.Client_LoggedIn;
             _client.Connected += _events.Client_Connected;
+            _client.Ready += _events.Client_Ready;
+            _client.UserLeft += _events.User_OnLeft;
+            _client.UserJoined += _events.User_OnJoined;
 
             var token = File.ReadAllText("C:\\Token.txt");
 
@@ -30,8 +34,8 @@ namespace _4kGamingBot
 
             CommandHelper _commandHelper = new CommandHelper(_client);
 
-            _Purge _Purge = new _Purge("!purge", "This is the description", 1);
-            _Help _Help = new _Help("!help", "This shows the user all commands that exist", 0);
+            _Purge _Purge = new _Purge("!purge", "This is the description", 1, GuildRoles.Helper);
+            _Help _Help = new _Help("!help", "This shows the user all commands that exist", 0, GuildRoles.Helper);
             _Help.CommandList.Add(_Purge);
 
             _commandHelper.AddCommand(_Purge);
