@@ -44,7 +44,8 @@ namespace _4kGamingBot.DiscordHelper
 
                         if (_command.permission == GuildRoles.All || user.Roles.Contains(role))
                         {
-                            await _command.eventActionMethod(args, _client, arg.Channel as IMessageChannel, arg.Author);
+                            await _command.eventToHandle(args, _client, arg.Channel as IMessageChannel, arg.Author, _command);
+                            //await _command.eventActionMethod(args, _client, arg.Channel as IMessageChannel, arg.Author);
                         }
                     }
                 }

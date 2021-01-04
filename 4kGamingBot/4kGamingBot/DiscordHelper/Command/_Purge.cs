@@ -9,8 +9,9 @@ using System.Threading.Tasks;
 
 namespace _4kGamingBot.DiscordHelper.Command
 {
-    class _Purge : BaseCommand
+    class _Purge //: BaseCommand
     {
+        /*
         public _Purge(string commandString, string description, int args, GuildRoles permission) : base(commandString, description, args, permission) { }
 
         public override async Task eventActionMethod(string[] args, DiscordSocketClient _client, IMessageChannel channel, SocketUser authorOfMessage)
@@ -28,5 +29,6 @@ namespace _4kGamingBot.DiscordHelper.Command
                 await EventFired(args, _client, channel, authorOfMessage);
             }
         }
+        */
     }
 }

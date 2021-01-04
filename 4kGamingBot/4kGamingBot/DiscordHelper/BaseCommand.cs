@@ -16,14 +16,18 @@ namespace _4kGamingBot.DiscordHelper
         public int args { get; set; }
         public GuildRoles permission { get; set; }
 
-        public BaseCommand(string commandString, string description, int args, GuildRoles permission)
+        public Func<string[], DiscordSocketClient, IMessageChannel, SocketUser, BaseCommand, Task> eventToHandle { get; set; }
+
+        public BaseCommand(string commandString, string description, int args, GuildRoles permission, Func<string[], DiscordSocketClient, IMessageChannel, SocketUser, BaseCommand, Task> eventToHandle)
         {
             this.commandString = commandString;
             this.description = description;
             this.args = args;
             this.permission = permission;
+            this.eventToHandle = eventToHandle;
         }
-        public virtual async Task eventActionMethod(string[] args, DiscordSocketClient _client, IMessageChannel channel, SocketUser authorOfMessage)
+
+        /*public virtual async Task eventActionMethod(string[] args, DiscordSocketClient _client, IMessageChannel channel, SocketUser authorOfMessage)
         {
             if (args.Count() == 2)
             {
@@ -36,6 +40,6 @@ namespace _4kGamingBot.DiscordHelper
         {
             Console.WriteLine($"User '{authorOfMessage.Username}' issued the '{commandString}' command with following args '{args[1]}'");
             await Task.CompletedTask;
-        }
+        }*/
     }
 }

@@ -34,12 +34,34 @@ namespace _4kGamingBot
 
             CommandHelper _commandHelper = new CommandHelper(_client);
 
-            _Purge _Purge = new _Purge("!purge", "This is the description", 1, GuildRoles.Helper);
+            /*_Purge _Purge = new _Purge("!purge", "This is the description", 1, GuildRoles.Helper);
+
             _Help _Help = new _Help("!help", "This shows the user all commands that exist", 0, GuildRoles.Helper);
             _Help.CommandList.Add(_Purge);
 
             _commandHelper.AddCommand(_Purge);
-            _commandHelper.AddCommand(_Help);
+            _commandHelper.AddCommand(_Help);*/
+
+            Func<string[], DiscordSocketClient, IMessageChannel, SocketUser, BaseCommand, Task> action = async (arg, _client, channel, user, _command) =>
+            {
+                if (arg.Count() == _command.args + 1)
+                {
+                    var messages = channel.GetMessagesAsync(Convert.ToInt32(arg[1]) + 1).Flatten();
+
+                    foreach (var message in await messages.ToArrayAsync())
+                    {
+                        await channel.DeleteMessageAsync(message);
+                    }
+                    await channel.SendMessageAsync($"'{_command.commandString.Replace("!", "")}d' for '{arg[1]}' messages");
+
+                    Console.WriteLine($"User '{user.Username}' issued the '{_command.commandString}' command with following args '{arg[1]}'");
+                }
+                await Task.CompletedTask;
+            };
+
+            BaseCommand bc = new BaseCommand("!purge", "This is the description", 1, GuildRoles.Helper, action);
+
+            _commandHelper.AddCommand(bc);
 
             await Task.Delay(-1);
         }

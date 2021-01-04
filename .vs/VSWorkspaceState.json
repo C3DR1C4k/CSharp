@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\4kGamingBot"
+    "\\4kGamingBot",
+    "\\4kGamingBot\\4kGamingBot"
   ],
-  "SelectedNode": "\\4kGamingBot",
+  "SelectedNode": "\\4kGamingBot\\4kGamingBot\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

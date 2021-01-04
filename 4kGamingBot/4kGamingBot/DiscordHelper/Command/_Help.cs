@@ -9,8 +9,9 @@ using System.Threading.Tasks;
 
 namespace _4kGamingBot.DiscordHelper.Command
 {
-    class _Help : BaseCommand
+    class _Help //: BaseCommand
     {
+        /*
         public List<BaseCommand> CommandList = new List<BaseCommand>();
         public _Help(string commandString, string description, int args, GuildRoles permission) : base(commandString, description, args, permission) { }
         
@@ -24,5 +25,6 @@ namespace _4kGamingBot.DiscordHelper.Command
             await channel.SendMessageAsync(OutPutString);
             await EventFired(args, _client, channel, authorOfMessage);
         }
+        */
     }
 }
