@@ -24,13 +24,37 @@ namespace DiscordW
 
                 string json = JsonConvert.SerializeObject(new
                 {
-                    embeds = new[]
+                    embeds = new object[]
                     {
                         new
                         {
                             title = "Title",
                             description = "Description",
                             color = 1127128,
+                        },
+                        new
+                        {
+                            fields = new object[]
+                            {
+                                new {
+                                    name = "Cat",
+                                    value = "Hi! :wave:",
+                                    inline = true
+                                },
+                                new {
+                                    name = "Dog",
+                                    value = "hello!",
+                                    inline = true
+                                },
+                                new {
+                                    name = "Cat",
+                                    value = "wanna play? join to voice channel!"
+                                },
+                                new {
+                                    name = "Dog",
+                                    value = "yay"
+                                }
+                            }
                         }
                     }
                 });
